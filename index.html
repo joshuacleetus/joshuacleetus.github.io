@@ -6,101 +6,100 @@
     <title>Joshua Cleetus | Senior iOS Engineer</title>
     <style>
         :root {
-            --bg: #ffffff;
-            --card: #f8fafc;
-            --card-border: #e2e8f0;
-            --accent: #0284c7; 
-            --text: #0f172a; 
-            --text-dim: #475569;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { font-size: 2.5rem; color: var(--text); margin-bottom: 10px; font-weight: 800; }
-        .tagline { font-size: 1.1rem; color: var(--text-dim); }
-        
-        .social-nav {
-            margin: 25px 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .social-nav a {
-            color: var(--text);
-            text-decoration: none;
-            padding: 8px 20px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.2s ease;
-        }
-        .social-nav a:hover { 
-            background: var(--text); 
-            color: white; 
-            border-color: var(--text);
+            --bg: #020617;
+            --accent: #38bdf8;
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --card: rgba(15, 23, 42, 0.8);
+            --card-border: rgba(255, 255, 255, 0.1);
         }
 
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        #gameCanvas {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1; display: block;
+        }
+
+        #score-hud {
+            position: fixed; top: 20px; right: 20px;
+            text-align: right; font-family: monospace;
+            z-index: 100; color: var(--accent);
+            background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px;
+        }
+
+        .container {
+            position: relative; z-index: 10;
+            max-width: 800px; margin: 0 auto;
+            padding: 60px 20px; pointer-events: none;
+        }
+        
+        header, .verse-box, .skills-grid, footer, h2 { pointer-events: auto; }
+
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; color: var(--text); }
+        .tagline { font-size: 1.1rem; color: var(--accent); font-weight: 600; }
+
+        .social-nav { margin: 25px 0; display: flex; justify-content: center; gap: 15px; }
+        .social-nav a {
+            color: var(--text); text-decoration: none;
+            padding: 8px 20px; border: 1px solid var(--card-border);
+            border-radius: 6px; font-size: 0.9rem; font-weight: 500;
+            background: var(--card); backdrop-filter: blur(5px); transition: 0.2s;
+        }
+        .social-nav a:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
         .verse-box {
-            background: var(--card);
-            border: 1px solid var(--card-border);
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-            font-style: italic;
-            color: var(--text-dim);
+            background: var(--card); border: 1px solid var(--card-border);
+            padding: 30px; border-radius: 12px; text-align: center;
+            margin: 40px 0; font-style: italic; color: var(--text);
+            backdrop-filter: blur(10px);
         }
 
         .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 20px; margin-top: 30px;
         }
         @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
 
         .skill-card {
-            background: white;
-            padding: 24px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
+            background: var(--card); padding: 24px;
+            border-radius: 12px; border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
         }
         .skill-card h3 { 
-            color: var(--accent); 
-            margin: 0 0 15px 0; 
-            font-size: 0.85rem; 
-            letter-spacing: 0.05em;
-            text-transform: uppercase; 
+            color: var(--accent); margin: 0 0 15px 0; 
+            font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; 
         }
         .skill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
         .skill-item { 
-            background: var(--card); 
-            color: var(--text-dim);
-            border: 1px solid var(--card-border);
-            padding: 4px 12px; 
-            border-radius: 4px; 
-            font-size: 0.85rem; 
+            background: rgba(255,255,255,0.05); color: var(--text-dim);
+            border: 1px solid var(--card-border); padding: 4px 12px; 
+            border-radius: 4px; font-size: 0.85rem; 
         }
 
         footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 40px;
+            text-align: center; margin-top: 60px; padding-top: 40px;
             border-top: 1px solid var(--card-border);
         }
-        .contact-info { margin-bottom: 20px; }
-        .contact-info a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .contact-info a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 1.1rem; }
     </style>
 </head>
 <body>
+
+<canvas id="gameCanvas"></canvas>
+
+<div id="score-hud">
+    <div>SCORE: <span id="currentScore">0</span></div>
+    <div>BEST: <span id="highScore">0</span></div>
+</div>
 
 <div class="container">
     <header>
@@ -171,5 +170,113 @@
     </footer>
 </div>
 
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const currentScoreEl = document.getElementById("currentScore");
+    const highScoreEl = document.getElementById("highScore");
+
+    let width, height, paddleWidth = 160, paddleHeight = 12;
+    let x, y, dx = 4, dy = -4, ballRadius = 10;
+    let paddleX, bricks = [], brickRowCount = 4;
+    let brickWidth = 80, brickHeight = 25, brickPadding = 12, brickOffsetTop = 80;
+    
+    let score = 0;
+    let highScore = localStorage.getItem("joshua_score") || 0;
+    highScoreEl.innerText = highScore;
+
+    function init() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        let brickColCount = Math.floor(width / (brickWidth + brickPadding));
+        paddleX = (width - paddleWidth) / 2;
+        x = width / 2; y = height - 100;
+        bricks = [];
+        for(let c=0; c < brickColCount; c++) {
+            bricks[c] = [];
+            for(let r=0; r < brickRowCount; r++) {
+                bricks[c][r] = { x: 0, y: 0, status: 1 };
+            }
+        }
+    }
+
+    document.addEventListener("mousemove", (e) => {
+        paddleX = e.clientX - paddleWidth / 2;
+    });
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Draw Bricks
+        for(let c=0; c < bricks.length; c++) {
+            for(let r=0; r < brickRowCount; r++) {
+                if(bricks[c][r].status == 1) {
+                    let brickX = (c * (brickWidth + brickPadding)) + (width % (brickWidth + brickPadding)) / 2;
+                    let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
+                    ctx.beginPath();
+                    ctx.roundRect(brickX, brickY, brickWidth, brickHeight, 4);
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+
+        // Draw Ball
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+        ctx.closePath();
+
+        // Draw Paddle
+        ctx.beginPath();
+        ctx.roundRect(paddleX, height - 30, paddleWidth, paddleHeight, 6);
+        ctx.fillStyle = "#38bdf8";
+        ctx.fill();
+        ctx.closePath();
+
+        // Collision Logic
+        for(let c=0; c < bricks.length; c++) {
+            for(let r=0; r < brickRowCount; r++) {
+                let b = bricks[c][r];
+                if(b.status == 1) {
+                    if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                        dy = -dy;
+                        b.status = 0;
+                        score++;
+                        currentScoreEl.innerText = score;
+                        if(score > highScore) {
+                            highScore = score;
+                            highScoreEl.innerText = highScore;
+                            localStorage.setItem("joshua_score", highScore);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(x + dx > width-ballRadius || x + dx < ballRadius) dx = -dx;
+        if(y + dy < ballRadius) dy = -dy;
+        else if(y + dy > height - 30) {
+            if(x > paddleX && x < paddleX + paddleWidth) {
+                dy = -dy;
+            } else {
+                score = 0;
+                currentScoreEl.innerText = score;
+                init();
+            }
+        }
+
+        x += dx; y += dy;
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    draw();
+</script>
 </body>
 </html>
