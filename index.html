@@ -35,7 +35,6 @@
             z-index: 100; font-weight: bold; font-size: 0.8rem;
         }
 
-        /* NEW: Game Message Overlay */
         #game-msg {
             position: fixed; bottom: 20px; left: 50%;
             transform: translateX(-50%);
@@ -44,6 +43,7 @@
             z-index: 100; text-transform: uppercase;
             background: white; padding: 5px 15px;
             border: 2px solid var(--text);
+            box-shadow: 4px 4px 0px var(--text);
         }
 
         .container {
@@ -64,12 +64,14 @@
             padding: 8px 20px; border: 2px solid var(--text);
             font-size: 0.85rem; font-weight: bold;
             background: white; box-shadow: 3px 3px 0px var(--text);
+            transition: 0.1s;
         }
+        .social-nav a:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px var(--text); background: var(--accent); color: white; }
 
         .verse-box {
             background: white; border: 2px solid var(--text);
             padding: 30px; margin: 40px 0; font-style: italic; 
-            box-shadow: 6px 6px 0px #d6d3d1;
+            box-shadow: 6px 6px 0px #d6d3d1; text-align: center;
         }
 
         .skills-grid {
@@ -79,19 +81,20 @@
         @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
 
         .skill-card {
-            background: white; padding: 24px;
+            background: white; padding: 20px;
             border: 2px solid var(--text);
             box-shadow: 4px 4px 0px #d6d3d1;
         }
-        .skill-card h3 { color: var(--accent); margin: 0 0 15px 0; font-size: 0.85rem; text-transform: uppercase; }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+        .skill-card h3 { color: var(--accent); margin: 0 0 15px 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
         .skill-item { 
             background: #f5f5f4; color: var(--text-dim);
-            border: 1px solid #a8a29e; padding: 4px 10px; 
-            font-size: 0.8rem; font-family: monospace;
+            border: 1px solid #a8a29e; padding: 3px 8px; 
+            font-size: 0.75rem; font-family: monospace;
         }
 
         footer { text-align: center; margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--text); }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -108,40 +111,60 @@
 <div class="container">
     <header>
         <h1>Joshua Cleetus</h1>
-        <div class="tagline">Senior iOS Engineer // 15 Years Exp</div>
+        <div class="tagline">Senior iOS Engineer // 15 Years of Experience</div>
         <div class="social-nav">
+            <a href="https://www.linkedin.com/feed/" target="_blank">LINKEDIN</a>
             <a href="https://github.com/joshuacleetus" target="_blank">GITHUB</a>
-            <a href="https://linkedin.com" target="_blank">LINKEDIN</a>
+            <a href="https://x.com/JoshuaCleetus" target="_blank">X (TWITTER)</a>
         </div>
     </header>
 
     <div class="verse-box">
-        "Have not I commanded thee? Be strong and of a good courage..."
+        "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the Lord thy God is with thee whithersoever thou goest."
         <br><br>
         <strong>— Joshua 1:9 (KJV)</strong>
     </div>
 
-    <h2 style="font-weight: 900; text-transform: uppercase;">Technical_Expertise</h2>
+    <h2 style="font-weight: 900; text-transform: uppercase; border-bottom: 2px solid var(--text); padding-bottom: 5px;">Technical_Expertise</h2>
     
     <div class="skills-grid">
         <div class="skill-card">
             <h3>Development</h3>
             <ul class="skill-list">
-                <li class="skill-item">Swift</li><li class="skill-item">SwiftUI</li><li class="skill-item">Obj-C</li>
-                <li class="skill-item">Combine</li>
+                <li class="skill-item">Swift</li><li class="skill-item">SwiftUI</li>
+                <li class="skill-item">Objective-C</li><li class="skill-item">UIKit</li>
+                <li class="skill-item">React Native</li><li class="skill-item">Combine</li>
             </ul>
         </div>
         <div class="skill-card">
-            <h3>Security</h3>
+            <h3>Security & Payments</h3>
             <ul class="skill-list">
-                <li class="skill-item">Tap to Pay</li><li class="skill-item">Secure Enclave</li>
+                <li class="skill-item">Apple Tap to Pay</li><li class="skill-item">OAuth 2.0</li>
+                <li class="skill-item">Encryption</li><li class="skill-item">Secure Enclave</li>
+            </ul>
+        </div>
+        <div class="skill-card">
+            <h3>Infrastructure</h3>
+            <ul class="skill-list">
+                <li class="skill-item">SDK Design</li><li class="skill-item">CI/CD</li>
+                <li class="skill-item">XCTest</li><li class="skill-item">MVVM/VIPER</li>
+            </ul>
+        </div>
+        <div class="skill-card">
+            <h3>Systems</h3>
+            <ul class="skill-list">
+                <li class="skill-item">Telematics</li><li class="skill-item">CoreLocation</li>
+                <li class="skill-item">CoreBluetooth</li><li class="skill-item">MapKit</li>
             </ul>
         </div>
     </div>
 
     <footer>
-        <p><strong>+1 (551) 208-9938</strong></p>
-        <p style="font-size: 0.7rem; font-family: monospace;">&copy; 2026 J_CLEETUS</p>
+        <div style="margin-bottom: 15px;">
+            <p><a href="mailto:joshua.cleetus@gmail.com">joshua.cleetus@gmail.com</a></p>
+            <p><strong>+1 (551) 208-9938</strong></p>
+        </div>
+        <p style="font-size: 0.7rem; font-family: monospace;">&copy; 2026 J_CLEETUS. ALL RIGHTS RESERVED.</p>
     </footer>
 </div>
 
@@ -161,7 +184,6 @@
     let highScore = localStorage.getItem("joshua_score_retro") || 0;
     highScoreEl.innerText = highScore;
 
-    // GAME STATES
     let isPaused = false;
     let gameStarted = false;
 
@@ -188,10 +210,9 @@
         msgEl.innerText = "Click to Start / Space to Pause";
     }
 
-    // KEYBOARD & MOUSE CONTROLS
     document.addEventListener("mousemove", (e) => {
         paddleX = e.clientX - paddleWidth / 2;
-        if(!gameStarted) x = e.clientX; // Ball follows paddle before start
+        if(!gameStarted) x = e.clientX; 
     });
 
     document.addEventListener("mousedown", () => {
@@ -203,6 +224,7 @@
 
     document.addEventListener("keydown", (e) => {
         if(e.code === "Space") {
+            e.preventDefault();
             isPaused = !isPaused;
             msgEl.innerText = isPaused ? "PAUSED" : (gameStarted ? "" : "Click to Start");
         }
@@ -229,12 +251,14 @@
                     ctx.rect(brickX, brickY, brickWidth, brickHeight);
                     ctx.fillStyle = rowColors[r % rowColors.length];
                     ctx.fill();
+                    ctx.fillStyle = "rgba(255,255,255,0.3)";
+                    ctx.fillRect(brickX, brickY, brickWidth, 2);
                     ctx.closePath();
                 }
             }
         }
 
-        // Ball
+        // Pixel Ball
         ctx.fillStyle = "#1c1917";
         ctx.fillRect(x - ballRadius, y - ballRadius, ballRadius * 2, ballRadius * 2);
 
@@ -243,7 +267,6 @@
         ctx.fillRect(paddleX, height - 40, paddleWidth, paddleHeight);
 
         if(gameStarted) {
-            // Collision & Movement
             for(let c=0; c < bricks.length; c++) {
                 for(let r=0; r < brickRowCount; r++) {
                     let b = bricks[c][r];
