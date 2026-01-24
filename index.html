@@ -9,7 +9,7 @@
             --bg: #fdfdf5;
             --accent: #d97706;
             --text: #1c1917; 
-            --glass: rgba(255, 255, 255, 0.82); 
+            --glass: rgba(255, 255, 255, 0.85); 
         }
 
         body, html {
@@ -17,39 +17,32 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
             overflow-x: hidden;
-            /* FIXED: Changed from 'none' to 'auto' to allow mobile scrolling */
-            touch-action: auto; 
+            touch-action: pan-y; /* Allows natural vertical scrolling */
         }
 
         #gameCanvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
-            z-index: 1; opacity: 0.45;
+            z-index: 1; opacity: 0.4;
             display: block;
-            pointer-events: none; /* Allows clicks to pass through to content */
+            pointer-events: none;
         }
 
         #score-hud {
             position: fixed; top: 15px; right: 15px;
-            text-align: right; font-family: "Courier New", monospace;
-            z-index: 100; font-weight: bold; font-size: 0.8rem;
+            z-index: 100; font-family: "Courier New", monospace;
             background: var(--glass); padding: 5px 12px; border: 2px solid var(--text);
+            font-weight: bold; font-size: 0.8rem;
         }
 
-        /* FIXED: Moved to extreme bottom */
+        /* Extreme Bottom Docked Buttons */
         #game-msg {
             position: fixed; bottom: 15px; left: 15px;
-            font-family: "Courier New", monospace;
-            font-weight: 900; color: var(--accent);
-            z-index: 1002; text-transform: uppercase;
-            background: white; padding: 8px 16px;
-            border: 2px solid var(--text);
-            box-shadow: 3px 3px 0px var(--text);
-            pointer-events: none;
-            text-align: center;
-            font-size: 0.7rem;
+            z-index: 1002; font-family: "Courier New", monospace;
+            background: white; padding: 8px 16px; border: 2px solid var(--text);
+            box-shadow: 3px 3px 0px var(--text); font-weight: 900;
+            color: var(--accent); font-size: 0.7rem; text-transform: uppercase;
         }
 
         #audio-controls {
@@ -64,67 +57,66 @@
             box-shadow: 3px 3px 0px var(--text);
         }
 
-        #yt-player { position: absolute; top: -9999px; left: -9999px; visibility: hidden; }
+        #yt-player { position: absolute; visibility: hidden; }
 
         .container {
             position: relative; z-index: 10;
             max-width: 850px; margin: 0 auto;
-            padding: 40px 20px;
-            /* Container doesn't block interactions */
-            pointer-events: none; 
+            padding: 40px 20px; pointer-events: none;
         }
         
-        /* Interactive items need pointer-events back */
-        header, .verse-box, .skills-grid, footer { pointer-events: auto; }
+        header, .verse-box, .skills-grid, footer, .section-label { pointer-events: auto; }
 
         header { 
             text-align: center; margin-bottom: 30px; 
-            background: var(--glass); padding: 30px; 
-            border: 2px solid var(--text);
-            backdrop-filter: blur(6px);
+            background: var(--glass); padding: 30px; border: 2px solid var(--text);
+            backdrop-filter: blur(8px);
         }
         
-        h1 { font-size: 2.5rem; margin: 0; font-weight: 900; }
-        .tagline { font-size: 0.9rem; color: var(--accent); font-weight: 800; text-transform: uppercase; }
+        h1 { font-size: 2.6rem; margin: 0; font-weight: 900; }
+        .tagline { font-size: 0.95rem; color: var(--accent); font-weight: 800; text-transform: uppercase; }
 
         .social-nav { margin: 20px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         .social-nav a {
-            color: var(--text); text-decoration: none;
-            padding: 6px 14px; border: 2px solid var(--text);
-            font-size: 0.75rem; font-weight: 900;
-            background: white; box-shadow: 2px 2px 0px var(--text);
+            color: var(--text); text-decoration: none; padding: 8px 16px;
+            border: 2px solid var(--text); font-weight: 900; font-size: 0.75rem;
+            background: white; box-shadow: 3px 3px 0px var(--text);
         }
 
         .verse-box {
             background: var(--glass); border: 2px solid var(--text);
-            padding: 25px; margin: 30px 0; font-style: italic; 
-            text-align: center; backdrop-filter: blur(6px);
+            padding: 30px; margin: 30px 0; font-style: italic; text-align: center;
+            backdrop-filter: blur(8px); font-size: 1.1rem;
+        }
+
+        .section-label {
+            font-weight: 900; text-transform: uppercase; background: var(--text);
+            color: var(--bg); display: inline-block; padding: 4px 12px;
+            margin-bottom: 15px; font-size: 0.85rem;
         }
 
         .skills-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 15px; margin-bottom: 40px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
         }
         @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
 
         .skill-card {
-            background: var(--glass); padding: 20px;
-            border: 2px solid var(--text);
-            backdrop-filter: blur(6px);
+            background: var(--glass); padding: 20px; border: 2px solid var(--text);
+            backdrop-filter: blur(8px);
         }
-        .skill-card h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 0.8rem; text-transform: uppercase; }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 5px; list-style: none; padding: 0; }
+        .skill-card h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 0.85rem; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
         .skill-item { 
-            background: white; color: var(--text);
-            border: 1px solid var(--text); padding: 2px 6px; 
-            font-size: 0.7rem; font-family: monospace;
+            background: white; border: 1px solid var(--text); 
+            padding: 2px 8px; font-size: 0.7rem; font-family: monospace; font-weight: bold;
         }
 
         footer { 
             text-align: center; margin-top: 50px; padding: 30px; 
             background: var(--glass); border: 2px solid var(--text);
-            backdrop-filter: blur(6px); margin-bottom: 80px; /* Padding for the docked buttons */
+            backdrop-filter: blur(8px); margin-bottom: 100px;
         }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -132,21 +124,14 @@
 <div id="yt-player"></div>
 <canvas id="gameCanvas"></canvas>
 
-<div id="score-hud">
-    <div>SCORE_ <span id="currentScore">0</span></div>
-    <div>BEST_ <span id="highScore">0</span></div>
-</div>
-
+<div id="score-hud">SCORE: <span id="currentScore">0</span> | BEST: <span id="highScore">0</span></div>
 <div id="game-msg"></div>
-
-<div id="audio-controls">
-    <button id="music-toggle">MUSIC: <span id="music-status">OFF</span></button>
-</div>
+<div id="audio-controls"><button id="music-toggle">MUSIC: <span id="music-status">OFF</span></button></div>
 
 <div class="container">
     <header>
         <h1>Joshua Cleetus</h1>
-        <div class="tagline">Senior iOS Engineer // 15 Years Exp</div>
+        <div class="tagline">Senior iOS Engineer // 15 Years Professional Experience</div>
         <div class="social-nav">
             <a href="https://www.linkedin.com/feed/" target="_blank">LINKEDIN</a>
             <a href="https://github.com/joshuacleetus" target="_blank">GITHUB</a>
@@ -160,53 +145,60 @@
         <strong>— Joshua 1:9 (KJV)</strong>
     </div>
 
-    <div style="font-weight:900; text-transform:uppercase; margin-bottom:10px;">Expertise_</div>
+    <div class="section-label">Technical_Stack</div>
     <div class="skills-grid">
         <div class="skill-card">
-            <h3>iOS Development</h3>
+            <h3>Development</h3>
             <ul class="skill-list">
-                <li class="skill-item">Swift</li><li class="skill-item">SwiftUI</li><li class="skill-item">Objective-C</li><li class="skill-item">Combine</li>
+                <li class="skill-item">Swift</li><li class="skill-item">SwiftUI</li><li class="skill-item">Objective-C</li>
+                <li class="skill-item">Combine</li><li class="skill-item">UIKit</li><li class="skill-item">React Native</li>
+                <li class="skill-item">C++</li><li class="skill-item">Kotlin</li>
             </ul>
         </div>
         <div class="skill-card">
-            <h3>Security</h3>
+            <h3>Security & Fintech</h3>
             <ul class="skill-list">
-                <li class="skill-item">Tap to Pay</li><li class="skill-item">OAuth 2.0</li><li class="skill-item">Secure Enclave</li>
+                <li class="skill-item">Apple Tap to Pay</li><li class="skill-item">OAuth 2.0</li>
+                <li class="skill-item">JWE/JWS/JWT</li><li class="skill-item">Secure Enclave</li>
+                <li class="skill-item">Biometrics</li><li class="skill-item">Encryption</li>
             </ul>
         </div>
         <div class="skill-card">
             <h3>Architecture</h3>
             <ul class="skill-list">
                 <li class="skill-item">SDK Design</li><li class="skill-item">CI/CD</li><li class="skill-item">MVVM-C</li>
+                <li class="skill-item">VIPER</li><li class="skill-item">Modularization</li><li class="skill-item">Unit Testing</li>
             </ul>
         </div>
         <div class="skill-card">
-            <h3>Systems</h3>
+            <h3>Advanced Systems</h3>
             <ul class="skill-list">
-                <li class="skill-item">Telematics</li><li class="skill-item">CoreBluetooth</li><li class="skill-item">MapKit</li>
+                <li class="skill-item">Telematics</li><li class="skill-item">CoreBluetooth</li>
+                <li class="skill-item">CoreLocation</li><li class="skill-item">MapKit</li>
+                <li class="skill-item">CoreData</li><li class="skill-item">SQLite</li>
             </ul>
         </div>
     </div>
 
     <footer>
+        <div class="section-label">Contact_Me</div>
         <p><a href="mailto:joshua.cleetus@gmail.com">joshua.cleetus@gmail.com</a></p>
         <p><strong>+1 (551) 208-9938</strong></p>
+        <p style="font-size: 0.6rem; opacity: 0.6; margin-top: 15px;">© 2026 JOSHUA CLEETUS. ALL RIGHTS RESERVED.</p>
     </footer>
 </div>
 
 <script>
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
+    var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var player;
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('yt-player', {
-            height: '0', width: '0',
-            videoId: 'y6vSsbP11nQ',
+            height: '0', width: '0', videoId: 'y6vSsbP11nQ',
             playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': 'y6vSsbP11nQ' },
-            events: { 'onReady': (e) => e.target.setVolume(40) }
+            events: { 'onReady': (e) => e.target.setVolume(35) }
         });
     }
 
@@ -218,12 +210,11 @@
     const musicBtn = document.getElementById("music-toggle");
     const musicStatus = document.getElementById("music-status");
 
-    let width, height, paddleWidth = 120, paddleHeight = 12;
+    let width, height, paddleWidth = 110, paddleHeight = 12;
     let x, y, dx = 4, dy = -4, ballRadius = 7, paddleX;
     let bricks = [], brickRowCount = 4, brickWidth = 65, brickHeight = 18, brickPadding = 10;
-    let score = 0, highScore = localStorage.getItem("joshua_score_retro") || 0;
-    let isPaused = false, gameStarted = false, musicPlaying = false;
-    let lastTap = 0;
+    let score = 0, highScore = localStorage.getItem("josh_hs") || 0;
+    let isPaused = false, gameStarted = false, musicPlaying = false, lastTap = 0;
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     highScoreEl.innerText = highScore;
@@ -244,8 +235,7 @@
 
     function resetBall() {
         gameStarted = false; isPaused = false;
-        x = width / 2; y = height - 120;
-        dx = 4; dy = -4;
+        x = width / 2; y = height - 120; dx = 4; dy = -4;
         msgEl.style.display = "block";
         msgEl.innerHTML = isMobile ? "DBL TAP TO START" : "CLICK TO START";
     }
@@ -257,7 +247,7 @@
         msgEl.innerText = isPaused ? "PAUSED" : "";
     }
 
-    // UPDATED INTERACTION: Allows scroll unless specifically dragging paddle
+    // SCROLL-FRIENDLY TOUCH LOGIC
     document.addEventListener("touchstart", (e) => {
         if(e.target.closest('#audio-controls') || e.target.closest('.social-nav')) return;
         let now = Date.now();
@@ -272,9 +262,9 @@
 
     document.addEventListener("touchmove", (e) => {
         if (!gameStarted || isPaused) return;
-        // Only prevent default (stop scrolling) if moving the paddle at the bottom of the screen
         let touchY = e.touches[0].clientY;
-        if (touchY > height - 150) {
+        // Only take control if swiping at the bottom 25% of the screen
+        if (touchY > height * 0.75) {
             paddleX = e.touches[0].clientX - paddleWidth / 2;
             e.preventDefault(); 
         }
@@ -300,14 +290,13 @@
         if(isPaused) { requestAnimationFrame(draw); return; }
         ctx.clearRect(0, 0, width, height);
         const rowColors = ["#ef4444", "#f59e0b", "#10b981", "#3b82f6"];
-        
         for(let c=0; c < bricks.length; c++) {
             for(let r=0; r < brickRowCount; r++) {
                 if(bricks[c][r].status == 1) {
-                    let brickX = (c * (brickWidth + brickPadding)) + (width % (brickWidth + brickPadding)) / 2;
-                    let brickY = (r * (brickHeight + brickPadding)) + 100;
-                    bricks[c][r].x = brickX; bricks[c][r].y = brickY;
-                    ctx.beginPath(); ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    let bx = (c * (brickWidth + brickPadding)) + (width % (brickWidth + brickPadding)) / 2;
+                    let by = (r * (brickHeight + brickPadding)) + 100;
+                    bricks[c][r].x = bx; bricks[c][r].y = by;
+                    ctx.beginPath(); ctx.rect(bx, by, brickWidth, brickHeight);
                     ctx.fillStyle = rowColors[r % rowColors.length];
                     ctx.fill(); ctx.closePath();
                 }
@@ -316,7 +305,6 @@
         ctx.fillStyle = "#1c1917";
         ctx.beginPath(); ctx.arc(x, y, ballRadius, 0, Math.PI*2); ctx.fill(); ctx.closePath();
         ctx.fillRect(paddleX, height - 40, paddleWidth, paddleHeight);
-
         if(gameStarted) {
             for(let c=0; c < bricks.length; c++) {
                 for(let r=0; r < brickRowCount; r++) {
@@ -324,7 +312,7 @@
                     if(b.status == 1 && x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                         dy = -dy; b.status = 0; score++;
                         currentScoreEl.innerText = score;
-                        if(score > highScore) { highScore = score; highScoreEl.innerText = highScore; localStorage.setItem("joshua_score_retro", highScore); }
+                        if(score > highScore) { highScore = score; highScoreEl.innerText = highScore; localStorage.setItem("josh_hs", highScore); }
                     }
                 }
             }
