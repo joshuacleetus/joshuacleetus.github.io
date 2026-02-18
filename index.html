@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,12 +9,14 @@
         :root {
             --bg: #fdfdf5;
             --accent: #d97706;
-            --text: #1c1917; 
-            --glass: rgba(255, 255, 255, 0.85); 
+            --text: #1c1917;
+            --glass: rgba(255, 255, 255, 0.85);
         }
 
-        body, html {
-            margin: 0; padding: 0;
+        body,
+        html {
+            margin: 0;
+            padding: 0;
             background-color: var(--bg);
             color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -22,76 +25,222 @@
         }
 
         #gameCanvas {
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 1; opacity: 0.4;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 15;
+            opacity: 0.4;
             display: block;
             pointer-events: none;
         }
 
         #score-hud {
-            position: fixed; top: 15px; right: 15px;
-            z-index: 100; font-family: "Courier New", monospace;
-            background: var(--glass); padding: 5px 12px; border: 2px solid var(--text);
-            font-weight: bold; font-size: 0.8rem;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            font-family: "Courier New", monospace;
+            background: var(--glass);
+            padding: 5px 12px;
+            border: 2px solid var(--text);
+            font-weight: bold;
+            font-size: 0.8rem;
         }
 
         #game-msg {
-            position: fixed; bottom: 15px; left: 15px;
-            z-index: 1002; font-family: "Courier New", monospace;
-            background: white; padding: 8px 16px; border: 2px solid var(--text);
-            box-shadow: 3px 3px 0px var(--text); font-weight: 900;
-            color: var(--accent); font-size: 0.7rem; text-transform: uppercase;
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            z-index: 1002;
+            font-family: "Courier New", monospace;
+            background: white;
+            padding: 8px 16px;
+            border: 2px solid var(--text);
+            box-shadow: 3px 3px 0px var(--text);
+            font-weight: 900;
+            color: var(--accent);
+            font-size: 0.7rem;
+            text-transform: uppercase;
         }
 
         #audio-controls {
-            position: fixed; bottom: 15px; right: 15px;
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
             z-index: 1002;
         }
 
         #music-toggle {
-            background: white; border: 2px solid var(--text);
-            padding: 8px 16px; font-family: "Courier New", monospace;
-            font-weight: 900; font-size: 0.7rem; cursor: pointer;
+            background: white;
+            border: 2px solid var(--text);
+            padding: 8px 16px;
+            font-family: "Courier New", monospace;
+            font-weight: 900;
+            font-size: 0.7rem;
+            cursor: pointer;
             box-shadow: 3px 3px 0px var(--text);
         }
 
-        #yt-player { position: absolute; visibility: hidden; }
+        #yt-player {
+            position: absolute;
+            visibility: hidden;
+        }
 
         .container {
-            position: relative; z-index: 10;
-            max-width: 850px; margin: 0 auto;
-            padding: 40px 20px; pointer-events: none;
+            position: relative;
+            z-index: 10;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            pointer-events: none;
         }
-        
-        header, .verse-box, .skills-grid, footer, .section-label, .projects-scroll-container { pointer-events: auto; }
 
-        header { 
-            text-align: center; margin-bottom: 30px; 
-            background: var(--glass); padding: 30px; border: 2px solid var(--text);
+        header,
+        .verse-box,
+        .book-section,
+        .skills-grid,
+        footer,
+        .section-label,
+        .projects-scroll-container {
+            pointer-events: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--glass);
+            padding: 30px;
+            border: 2px solid var(--text);
             backdrop-filter: blur(8px);
         }
-        
-        h1 { font-size: 2.6rem; margin: 0; font-weight: 900; }
-        .tagline { font-size: 0.95rem; color: var(--accent); font-weight: 800; text-transform: uppercase; }
 
-        .social-nav { margin: 20px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        h1 {
+            font-size: 2.6rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .social-nav {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
         .social-nav a {
-            color: var(--text); text-decoration: none; padding: 8px 16px;
-            border: 2px solid var(--text); font-weight: 900; font-size: 0.75rem;
-            background: white; box-shadow: 3px 3px 0px var(--text);
+            color: var(--text);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid var(--text);
+            font-weight: 900;
+            font-size: 0.75rem;
+            background: white;
+            box-shadow: 3px 3px 0px var(--text);
         }
 
         .verse-box {
-            background: var(--glass); border: 2px solid var(--text);
-            padding: 30px; margin: 30px 0; font-style: italic; text-align: center;
-            backdrop-filter: blur(8px); font-size: 1.1rem;
+            background: var(--glass);
+            border: 2px solid var(--text);
+            padding: 30px;
+            margin: 30px 0;
+            font-style: italic;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            font-size: 1.1rem;
         }
 
         .section-label {
-            font-weight: 900; text-transform: uppercase; background: var(--text);
-            color: var(--bg); display: inline-block; padding: 4px 12px;
-            margin-bottom: 15px; font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: var(--text);
+            color: var(--bg);
+            display: inline-block;
+            padding: 4px 12px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* BOOK SECTION */
+        .book-section {
+            background: var(--glass);
+            border: 2px solid var(--text);
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .book-emoji {
+            font-size: 3.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .book-details {
+            flex: 1;
+        }
+
+        .book-details h2 {
+            margin: 0 0 4px 0;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        .book-author {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .book-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .book-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid var(--text);
+            font-weight: 900;
+            font-size: 0.7rem;
+            background: white;
+            box-shadow: 3px 3px 0px var(--text);
+            text-transform: uppercase;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .book-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0px var(--text);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 500px) {
+            .book-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .book-links {
+                justify-content: center;
+            }
         }
 
         /* PROJECT SCROLL STYLES */
@@ -107,8 +256,14 @@
             margin-bottom: 30px;
         }
 
-        .projects-scroll-container::-webkit-scrollbar { height: 6px; }
-        .projects-scroll-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        .projects-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .projects-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
 
         .project-card {
             flex: 0 0 260px;
@@ -132,281 +287,401 @@
         }
 
         .project-card img {
-            width: 55px; height: 55px;
+            width: 55px;
+            height: 55px;
             border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             background: white;
             flex-shrink: 0;
         }
 
-        .project-info { display: flex; flex-direction: column; overflow: hidden; }
-        .project-title { font-weight: 900; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .project-desc { font-size: 0.7rem; opacity: 0.7; font-weight: bold; text-transform: uppercase; }
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .project-title {
+            font-weight: 900;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .project-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
         .skills-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             margin-bottom: 30px;
         }
-        @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
 
-        .skill-card {
-            background: var(--glass); padding: 20px; border: 2px solid var(--text);
-            backdrop-filter: blur(8px);
-        }
-        .skill-card h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 0.85rem; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
-        .skill-item { 
-            background: white; border: 1px solid var(--text); 
-            padding: 2px 8px; font-size: 0.7rem; font-family: monospace; font-weight: bold;
-        }
-
-        footer { 
-            text-align: center; margin-top: 50px; padding: 30px; 
-            background: var(--glass); border: 2px solid var(--text);
-            backdrop-filter: blur(8px); margin-bottom: 100px;
-        }
-        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-<div id="yt-player"></div>
-<canvas id="gameCanvas"></canvas>
-
-<div id="score-hud">SCORE: <span id="currentScore">0</span> | BEST: <span id="highScore">0</span></div>
-<div id="game-msg"></div>
-<div id="audio-controls"><button id="music-toggle">MUSIC: <span id="music-status">OFF</span></button></div>
-
-<div class="container">
-    <header>
-        <h1>Joshua Cleetus</h1>
-        <div class="tagline">Senior iOS Engineer // 15 Years Professional Experience</div>
-        <div class="social-nav">
-            <a href="https://www.linkedin.com/feed/" target="_blank">LINKEDIN</a>
-            <a href="https://github.com/joshuacleetus" target="_blank">GITHUB</a>
-            <a href="https://x.com/JoshuaCleetus" target="_blank">X (TWITTER)</a>
-        </div>
-    </header>
-
-    <div class="verse-box">
-        "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the Lord thy God is with thee whithersoever thou goest."
-        <br><br>
-        <strong>— Joshua 1:9 (KJV)</strong>
-    </div>
-
-    <div class="section-label">Featured_Work (Scroll ➔)</div>
-    <div class="projects-scroll-container">
-        <a href="https://apps.apple.com/us/app/rally-rd-invest-buy-sell/id1136945620" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f5/27/d6/f527d65c-0f9e-03dd-b68c-7c8e6f1367e9/AppIcon-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-85-220.png/400x400ia-75.webp" alt="Rally">
-            <div class="project-info"><span class="project-title">Rally Rd</span><span class="project-desc">Fintech</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/orangetheory-fitness/id1424351827" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c8/ed/b2/c8edb233-6317-1882-2955-947b526bbdbf/Placeholder.mill/400x400bb-75.webp" alt="OTF">
-            <div class="project-info"><span class="project-title">Orangetheory</span><span class="project-desc">Health</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/ford/id1095418609" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c2/8b/ba/c28bba4f-2e81-8ea5-ad0b-cf990a084b28/Placeholder.mill/400x400bb-75.webp" alt="Ford">
-            <div class="project-info"><span class="project-title">FordPass</span><span class="project-desc">Automotive</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/mypepsico/id1532412267" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d0/51/27/d0512730-86f2-dec8-f32c-3c43553cbdea/SNRequestorAppIcon-0-0-1x_U007emarketing-0-8-0-0-85-220.png/400x400ia-75.webp" alt="Pepsi">
-            <div class="project-info"><span class="project-title">MyPepsiCo</span><span class="project-desc">Enterprise</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/payanywhere-point-of-sale-pos/id404066296" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ff/c6/3e/ffc63e73-3d88-aa1f-39ca-c262cc1b7e38/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/400x400ia-75.webp" alt="Payanywhere">
-            <div class="project-info"><span class="project-title">Payanywhere</span><span class="project-desc">POS/Payments</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/kroger/id403901186" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/0c/96/f5/0c96f5aa-ed6d-6b8a-8912-c5a8a06982e3/Placeholder.mill/400x400bb-75.webp" alt="Kroger">
-            <div class="project-info"><span class="project-title">Kroger</span><span class="project-desc">Retail</span></div>
-        </a>
-        <a href="https://apps.apple.com/us/app/schwab-mobile/id407358186" target="_blank" class="project-card">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/34/4c/b4/344cb4db-d550-3634-2ab1-5709007e3c6e/Placeholder.mill/400x400bb-75.webp" alt="Schwab">
-            <div class="project-info"><span class="project-title">Schwab</span><span class="project-desc">Finance</span></div>
-        </a>
-    </div>
-
-    <div class="section-label">Technical_Stack</div>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>Development</h3>
-            <ul class="skill-list">
-                <li class="skill-item">Swift</li><li class="skill-item">SwiftUI</li><li class="skill-item">Objective-C</li>
-                <li class="skill-item">Combine</li><li class="skill-item">UIKit</li><li class="skill-item">React Native</li>
-                <li class="skill-item">C++</li><li class="skill-item">Kotlin</li>
-            </ul>
-        </div>
-        <div class="skill-card">
-            <h3>Security & Fintech</h3>
-            <ul class="skill-list">
-                <li class="skill-item">Apple Tap to Pay</li><li class="skill-item">OAuth 2.0</li>
-                <li class="skill-item">JWE/JWS/JWT</li><li class="skill-item">Secure Enclave</li>
-                <li class="skill-item">Biometrics</li><li class="skill-item">Encryption</li>
-            </ul>
-        </div>
-        <div class="skill-card">
-            <h3>Architecture</h3>
-            <ul class="skill-list">
-                <li class="skill-item">SDK Design</li><li class="skill-item">CI/CD</li><li class="skill-item">MVVM-C</li>
-                <li class="skill-item">VIPER</li><li class="skill-item">Modularization</li><li class="skill-item">Unit Testing</li>
-            </ul>
-        </div>
-        <div class="skill-card">
-            <h3>Advanced Systems</h3>
-            <ul class="skill-list">
-                <li class="skill-item">Telematics</li><li class="skill-item">CoreBluetooth</li>
-                <li class="skill-item">CoreLocation</li><li class="skill-item">MapKit</li>
-                <li class="skill-item">CoreData</li><li class="skill-item">SQLite</li>
-            </ul>
-        </div>
-    </div>
-
-    <footer>
-        <div class="section-label">Contact_Me</div>
-        <p><a href="mailto:joshua.cleetus@gmail.com">joshua.cleetus@gmail.com</a></p>
-        <p><strong>+1 (551) 208-9938</strong></p>
-        <p style="font-size: 0.6rem; opacity: 0.6; margin-top: 15px;">© 2026 JOSHUA CLEETUS. ALL RIGHTS RESERVED.</p>
-    </footer>
-</div>
-
-<script>
-    var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('yt-player', {
-            height: '0', width: '0', videoId: 'y6vSsbP11nQ',
-            playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': 'y6vSsbP11nQ' },
-            events: { 'onReady': (e) => e.target.setVolume(35) }
-        });
-    }
-
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    const msgEl = document.getElementById("game-msg");
-    const currentScoreEl = document.getElementById("currentScore");
-    const highScoreEl = document.getElementById("highScore");
-    const musicBtn = document.getElementById("music-toggle");
-    const musicStatus = document.getElementById("music-status");
-
-    let width, height, paddleWidth = 110, paddleHeight = 12;
-    let x, y, dx = 4, dy = -4, ballRadius = 7, paddleX;
-    let bricks = [], brickRowCount = 4, brickWidth = 65, brickHeight = 18, brickPadding = 10;
-    let score = 0, highScore = localStorage.getItem("josh_hs") || 0;
-    let isPaused = false, gameStarted = false, musicPlaying = false, lastTap = 0;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    highScoreEl.innerText = highScore;
-
-    function init() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        if(width < 500) { brickWidth = 45; paddleWidth = 90; }
-        let brickColCount = Math.floor(width / (brickWidth + brickPadding));
-        paddleX = (width - paddleWidth) / 2;
-        resetBall();
-        bricks = [];
-        for(let c=0; c < brickColCount; c++) {
-            bricks[c] = [];
-            for(let r=0; r < brickRowCount; r++) bricks[c][r] = { x: 0, y: 0, status: 1 };
-        }
-    }
-
-    function resetBall() {
-        gameStarted = false; isPaused = false;
-        x = width / 2; y = height - 120; dx = 4; dy = -4;
-        msgEl.style.display = "block";
-        msgEl.innerHTML = isMobile ? "DBL TAP TO START" : "CLICK TO START";
-    }
-
-    function togglePause() {
-        if(!gameStarted) return;
-        isPaused = !isPaused;
-        msgEl.style.display = isPaused ? "block" : "none";
-        msgEl.innerText = isPaused ? "PAUSED" : "";
-    }
-
-    document.addEventListener("touchstart", (e) => {
-        if(e.target.closest('#audio-controls') || e.target.closest('.social-nav') || e.target.closest('.projects-scroll-container')) return;
-        let now = Date.now();
-        if(now - lastTap < 300) {
-            if(!gameStarted) {
-                gameStarted = true; msgEl.style.display = "none";
-                if(!musicPlaying && player) { player.playVideo(); musicPlaying = true; musicStatus.innerText = "ON"; }
-            } else { togglePause(); }
-        }
-        lastTap = now;
-    });
-
-    document.addEventListener("touchmove", (e) => {
-        if (!gameStarted || isPaused || e.target.closest('.projects-scroll-container')) return;
-        let touchY = e.touches[0].clientY;
-        if (touchY > height * 0.75) {
-            paddleX = e.touches[0].clientX - paddleWidth / 2;
-            e.preventDefault(); 
-        }
-    }, {passive: false});
-
-    document.addEventListener("mousedown", (e) => {
-        if(isMobile || e.target.closest('#audio-controls') || e.target.closest('.social-nav') || e.target.closest('.projects-scroll-container')) return;
-        if(!gameStarted) { gameStarted = true; msgEl.style.display = "none"; }
-    });
-
-    document.addEventListener("mousemove", (e) => { if(!isMobile) paddleX = e.clientX - paddleWidth / 2; });
-
-    musicBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (musicPlaying) { player.pauseVideo(); musicStatus.innerText = "OFF"; } 
-        else { player.playVideo(); musicStatus.innerText = "ON"; }
-        musicPlaying = !musicPlaying;
-    });
-
-    document.addEventListener("keydown", (e) => { if(e.code === "Space") { e.preventDefault(); togglePause(); } });
-
-    function draw() {
-        if(isPaused) { requestAnimationFrame(draw); return; }
-        ctx.clearRect(0, 0, width, height);
-        const rowColors = ["#ef4444", "#f59e0b", "#10b981", "#3b82f6"];
-        for(let c=0; c < bricks.length; c++) {
-            for(let r=0; r < brickRowCount; r++) {
-                if(bricks[c][r].status == 1) {
-                    let bx = (c * (brickWidth + brickPadding)) + (width % (brickWidth + brickPadding)) / 2;
-                    let by = (r * (brickHeight + brickPadding)) + 100;
-                    bricks[c][r].x = bx; bricks[c][r].y = by;
-                    ctx.beginPath(); ctx.rect(bx, by, brickWidth, brickHeight);
-                    ctx.fillStyle = rowColors[r % rowColors.length];
-                    ctx.fill(); ctx.closePath();
-                }
+        @media (max-width: 600px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
-        ctx.fillStyle = "#1c1917";
-        ctx.beginPath(); ctx.arc(x, y, ballRadius, 0, Math.PI*2); ctx.fill(); ctx.closePath();
-        ctx.fillRect(paddleX, height - 40, paddleWidth, paddleHeight);
-        if(gameStarted) {
-            for(let c=0; c < bricks.length; c++) {
-                for(let r=0; r < brickRowCount; r++) {
-                    let b = bricks[c][r];
-                    if(b.status == 1 && x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-                        dy = -dy; b.status = 0; score++;
-                        currentScoreEl.innerText = score;
-                        if(score > highScore) { highScore = score; highScoreEl.innerText = highScore; localStorage.setItem("josh_hs", highScore); }
+
+        .skill-card {
+            background: var(--glass);
+            padding: 20px;
+            border: 2px solid var(--text);
+            backdrop-filter: blur(8px);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin: 0 0 10px 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-item {
+            background: white;
+            border: 1px solid var(--text);
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--glass);
+            border: 2px solid var(--text);
+            backdrop-filter: blur(8px);
+            margin-bottom: 100px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="yt-player"></div>
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="score-hud">SCORE: <span id="currentScore">0</span> | BEST: <span id="highScore">0</span></div>
+    <div id="game-msg"></div>
+    <div id="audio-controls"><button id="music-toggle">MUSIC: <span id="music-status">OFF</span></button></div>
+
+    <div class="container">
+        <header>
+            <h1>Joshua Cleetus</h1>
+            <div class="tagline">Senior iOS Engineer // 15 Years Professional Experience</div>
+            <div class="social-nav">
+                <a href="https://www.linkedin.com/feed/" target="_blank">LINKEDIN</a>
+                <a href="https://github.com/joshuacleetus" target="_blank">GITHUB</a>
+                <a href="https://x.com/JoshuaCleetus" target="_blank">X (TWITTER)</a>
+                <a href="#my-book">📖 BOOK</a>
+            </div>
+        </header>
+
+        <div class="verse-box">
+            "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for
+            the Lord thy God is with thee whithersoever thou goest."
+            <br><br>
+            <strong>— Joshua 1:9 (KJV)</strong>
+        </div>
+
+        <div class="section-label" id="my-book">My_Book</div>
+        <div class="book-section">
+            <div class="book-emoji">📖</div>
+            <div class="book-details">
+                <h2>Cast Your Worries Away</h2>
+                <div class="book-author">By Joshua Cleetus</div>
+                <div class="book-links">
+                    <a href="https://books.apple.com/us/book/cast-your-worries-away/id6751201782" target="_blank">🍎
+                        Apple Books</a>
+                    <a href="https://r.amzlink.to/?btn_url=https%3A%2F%2Fwww.amazon.in%2Fdp%2FB0FMT9YWVG&btn_ref=org-433bb393e1b8b503"
+                        target="_blank">📱 Kindle</a>
+                    <a href="https://amzn.to/47OgKDS" target="_blank">📖 Paperback</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-label">Featured_Work (Scroll ➔)</div>
+        <div class="projects-scroll-container">
+            <a href="https://ioscodelab.com" target="_blank" class="project-card">
+                <img src="ioscodelab_logo.png" alt="iOSCodeLab">
+                <div class="project-info"><span class="project-title">iOSCodeLab</span><span class="project-desc">EdTech
+                        / Dev Tools</span></div>
+            </a>
+            <a href="https://legalcity.com" target="_blank" class="project-card">
+                <img src="legalcity_logo.png" alt="LegalCity">
+                <div class="project-info"><span class="project-title">LegalCity</span><span
+                        class="project-desc">LegalTech</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/rally-rd-invest-buy-sell/id1136945620" target="_blank"
+                class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f5/27/d6/f527d65c-0f9e-03dd-b68c-7c8e6f1367e9/AppIcon-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-85-220.png/400x400ia-75.webp"
+                    alt="Rally">
+                <div class="project-info"><span class="project-title">Rally Rd</span><span
+                        class="project-desc">Fintech</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/orangetheory-fitness/id1424351827" target="_blank"
+                class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c8/ed/b2/c8edb233-6317-1882-2955-947b526bbdbf/Placeholder.mill/400x400bb-75.webp"
+                    alt="OTF">
+                <div class="project-info"><span class="project-title">Orangetheory</span><span
+                        class="project-desc">Health</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/ford/id1095418609" target="_blank" class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c2/8b/ba/c28bba4f-2e81-8ea5-ad0b-cf990a084b28/Placeholder.mill/400x400bb-75.webp"
+                    alt="Ford">
+                <div class="project-info"><span class="project-title">FordPass</span><span
+                        class="project-desc">Automotive</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/mypepsico/id1532412267" target="_blank" class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d0/51/27/d0512730-86f2-dec8-f32c-3c43553cbdea/SNRequestorAppIcon-0-0-1x_U007emarketing-0-8-0-0-85-220.png/400x400ia-75.webp"
+                    alt="Pepsi">
+                <div class="project-info"><span class="project-title">MyPepsiCo</span><span
+                        class="project-desc">Enterprise</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/payanywhere-point-of-sale-pos/id404066296" target="_blank"
+                class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ff/c6/3e/ffc63e73-3d88-aa1f-39ca-c262cc1b7e38/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/400x400ia-75.webp"
+                    alt="Payanywhere">
+                <div class="project-info"><span class="project-title">Payanywhere</span><span
+                        class="project-desc">POS/Payments</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/kroger/id403901186" target="_blank" class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/0c/96/f5/0c96f5aa-ed6d-6b8a-8912-c5a8a06982e3/Placeholder.mill/400x400bb-75.webp"
+                    alt="Kroger">
+                <div class="project-info"><span class="project-title">Kroger</span><span
+                        class="project-desc">Retail</span></div>
+            </a>
+            <a href="https://apps.apple.com/us/app/schwab-mobile/id407358186" target="_blank" class="project-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/34/4c/b4/344cb4db-d550-3634-2ab1-5709007e3c6e/Placeholder.mill/400x400bb-75.webp"
+                    alt="Schwab">
+                <div class="project-info"><span class="project-title">Schwab</span><span
+                        class="project-desc">Finance</span></div>
+            </a>
+        </div>
+
+        <div class="section-label">Technical_Stack</div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Development</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">Swift</li>
+                    <li class="skill-item">SwiftUI</li>
+                    <li class="skill-item">Objective-C</li>
+                    <li class="skill-item">Combine</li>
+                    <li class="skill-item">UIKit</li>
+                    <li class="skill-item">React Native</li>
+                    <li class="skill-item">C++</li>
+                    <li class="skill-item">Kotlin</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Security & Fintech</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">Apple Tap to Pay</li>
+                    <li class="skill-item">OAuth 2.0</li>
+                    <li class="skill-item">JWE/JWS/JWT</li>
+                    <li class="skill-item">Secure Enclave</li>
+                    <li class="skill-item">Biometrics</li>
+                    <li class="skill-item">Encryption</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Architecture</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">SDK Design</li>
+                    <li class="skill-item">CI/CD</li>
+                    <li class="skill-item">MVVM-C</li>
+                    <li class="skill-item">VIPER</li>
+                    <li class="skill-item">Modularization</li>
+                    <li class="skill-item">Unit Testing</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Advanced Systems</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">Telematics</li>
+                    <li class="skill-item">CoreBluetooth</li>
+                    <li class="skill-item">CoreLocation</li>
+                    <li class="skill-item">MapKit</li>
+                    <li class="skill-item">CoreData</li>
+                    <li class="skill-item">SQLite</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <div class="section-label">Contact_Me</div>
+            <p><a href="mailto:joshua.cleetus@gmail.com">joshua.cleetus@gmail.com</a></p>
+            <p><strong>+1 (551) 208-9938</strong></p>
+            <p style="font-size: 0.6rem; opacity: 0.6; margin-top: 15px;">© 2026 JOSHUA CLEETUS. ALL RIGHTS RESERVED.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-player', {
+                height: '0', width: '0', videoId: 'y6vSsbP11nQ',
+                playerVars: { 'autoplay': 0, 'controls': 0, 'loop': 1, 'playlist': 'y6vSsbP11nQ' },
+                events: { 'onReady': (e) => e.target.setVolume(35) }
+            });
+        }
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const msgEl = document.getElementById("game-msg");
+        const currentScoreEl = document.getElementById("currentScore");
+        const highScoreEl = document.getElementById("highScore");
+        const musicBtn = document.getElementById("music-toggle");
+        const musicStatus = document.getElementById("music-status");
+
+        let width, height, paddleWidth = 110, paddleHeight = 12;
+        let x, y, dx = 4, dy = -4, ballRadius = 7, paddleX;
+        let bricks = [], brickRowCount = 4, brickWidth = 65, brickHeight = 18, brickPadding = 10;
+        let score = 0, highScore = localStorage.getItem("josh_hs") || 0;
+        let isPaused = false, gameStarted = false, musicPlaying = false, lastTap = 0;
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        highScoreEl.innerText = highScore;
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            if (width < 500) { brickWidth = 45; paddleWidth = 90; }
+            let brickColCount = Math.floor(width / (brickWidth + brickPadding));
+            paddleX = (width - paddleWidth) / 2;
+            resetBall();
+            bricks = [];
+            for (let c = 0; c < brickColCount; c++) {
+                bricks[c] = [];
+                for (let r = 0; r < brickRowCount; r++) bricks[c][r] = { x: 0, y: 0, status: 1 };
+            }
+        }
+
+        function resetBall() {
+            gameStarted = false; isPaused = false;
+            x = width / 2; y = height - 120; dx = 4; dy = -4;
+            msgEl.style.display = "block";
+            msgEl.innerHTML = isMobile ? "DBL TAP TO START" : "CLICK TO START";
+        }
+
+        function togglePause() {
+            if (!gameStarted) return;
+            isPaused = !isPaused;
+            msgEl.style.display = isPaused ? "block" : "none";
+            msgEl.innerText = isPaused ? "PAUSED" : "";
+        }
+
+        document.addEventListener("touchstart", (e) => {
+            if (e.target.closest('#audio-controls') || e.target.closest('.social-nav') || e.target.closest('.projects-scroll-container')) return;
+            let now = Date.now();
+            if (now - lastTap < 300) {
+                if (!gameStarted) {
+                    gameStarted = true; msgEl.style.display = "none";
+                    if (!musicPlaying && player) { player.playVideo(); musicPlaying = true; musicStatus.innerText = "ON"; }
+                } else { togglePause(); }
+            }
+            lastTap = now;
+        });
+
+        document.addEventListener("touchmove", (e) => {
+            if (!gameStarted || isPaused || e.target.closest('.projects-scroll-container')) return;
+            let touchY = e.touches[0].clientY;
+            if (touchY > height * 0.75) {
+                paddleX = e.touches[0].clientX - paddleWidth / 2;
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener("mousedown", (e) => {
+            if (isMobile || e.target.closest('#audio-controls') || e.target.closest('.social-nav') || e.target.closest('.projects-scroll-container')) return;
+            if (!gameStarted) { gameStarted = true; msgEl.style.display = "none"; }
+        });
+
+        document.addEventListener("mousemove", (e) => { if (!isMobile) paddleX = e.clientX - paddleWidth / 2; });
+
+        musicBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (musicPlaying) { player.pauseVideo(); musicStatus.innerText = "OFF"; }
+            else { player.playVideo(); musicStatus.innerText = "ON"; }
+            musicPlaying = !musicPlaying;
+        });
+
+        document.addEventListener("keydown", (e) => { if (e.code === "Space") { e.preventDefault(); togglePause(); } });
+
+        function draw() {
+            if (isPaused) { requestAnimationFrame(draw); return; }
+            ctx.clearRect(0, 0, width, height);
+            const rowColors = ["#FF6B00", "#0EA5E9", "#A855F7", "#06D6A0"];
+            for (let c = 0; c < bricks.length; c++) {
+                for (let r = 0; r < brickRowCount; r++) {
+                    if (bricks[c][r].status == 1) {
+                        let bx = (c * (brickWidth + brickPadding)) + (width % (brickWidth + brickPadding)) / 2;
+                        let by = (r * (brickHeight + brickPadding)) + 100;
+                        bricks[c][r].x = bx; bricks[c][r].y = by;
+                        ctx.beginPath(); ctx.rect(bx, by, brickWidth, brickHeight);
+                        ctx.fillStyle = rowColors[r % rowColors.length];
+                        ctx.fill(); ctx.closePath();
                     }
                 }
             }
-            if(x + dx > width - ballRadius || x + dx < ballRadius) dx = -dx;
-            if(y + dy < ballRadius) dy = -dy;
-            else if(y + dy > height - 40) {
-                if(x > paddleX && x < paddleX + paddleWidth) dy = -dy;
-                else { score = 0; currentScoreEl.innerText = score; init(); }
+            ctx.fillStyle = "#A855F7";
+            ctx.beginPath(); ctx.arc(x, y, ballRadius, 0, Math.PI * 2); ctx.fill(); ctx.closePath();
+            ctx.fillStyle = "#06D6A0";
+            ctx.fillRect(paddleX, height - 40, paddleWidth, paddleHeight);
+            if (gameStarted) {
+                for (let c = 0; c < bricks.length; c++) {
+                    for (let r = 0; r < brickRowCount; r++) {
+                        let b = bricks[c][r];
+                        if (b.status == 1 && x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                            dy = -dy; b.status = 0; score++;
+                            currentScoreEl.innerText = score;
+                            if (score > highScore) { highScore = score; highScoreEl.innerText = highScore; localStorage.setItem("josh_hs", highScore); }
+                        }
+                    }
+                }
+                if (x + dx > width - ballRadius || x + dx < ballRadius) dx = -dx;
+                if (y + dy < ballRadius) dy = -dy;
+                else if (y + dy > height - 40) {
+                    if (x > paddleX && x < paddleX + paddleWidth) dy = -dy;
+                    else { score = 0; currentScoreEl.innerText = score; init(); }
+                }
+                x += dx; y += dy;
             }
-            x += dx; y += dy;
+            requestAnimationFrame(draw);
         }
-        requestAnimationFrame(draw);
-    }
-    window.addEventListener('resize', init);
-    init(); draw();
-</script>
+        window.addEventListener('resize', init);
+        init(); draw();
+    </script>
 </body>
+
 </html>
